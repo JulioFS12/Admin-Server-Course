@@ -229,7 +229,41 @@ Formato octal
 chmod | cambiar permisos (chmod u-r archivo.txt), forma rapida asignar permisos a todos 'chmod +x'
 chown | (Change Owner), cambia la propiedad d
 ```
-### [Learn more...](https://blog.desdelinux.net/permisos-y-derechos-en-linux/)
+#### [Learn more...](https://blog.desdelinux.net/permisos-y-derechos-en-linux/)
+
+### Conociendo las terminales en linux
+
+* Las distribuciones de Linux para servidores no incluyen interfaz gráfica, ya que consumen muchos recursos. Esto significa que siempre vamos a trabajar desde la terminal.
+
+* Las distribuciones de Linux para servidores no incluyen interfaz gráfica, ya que consumen muchos recursos. Esto significa que siempre vamos a trabajar desde la terminal.
+
+* Tendremos disponibles 6 terminales virtuales a las que podemos entrar o salir con las teclas Ctrl + Alt + Fx. También podemos usar el comando chvt. La séptima terminal es la interfaz gráfica, así que en este caso no disponemos de ella.
+
+* Cada usuario activo en nuestro sistema operativo crea una nueva conexión. Podemos ver todas estas conexiones con los comandos who y w (este último nos da un poco más de información).
+
+* Para ver todos los procesos que corren en el sistema podemos usar el comando ps. Para filtrar los procesos y ver únicamente las conexiones de los usuarios usamos ps -ft tty.
+
+* Este comando nos muestra el identificador de cada proceso. Para terminarlo podemos usar el comando kill -9 PID.
+
+### Manejo y monitoreo de procesos y recursos del sistema
+
+Para ver los procesos en sistemas Linux, contamos con el comando ‘ ps ’, que listará (de múltiples formas según las opciones que le pasemos) todos los procesos que se encuentran corriendo en nuestro equipo.
+
+```
+'ps' = todos los procesos
+'man ps' = manual del comando ps
+'ps aux' = (que mostrará un árbol jerárquico con la ruta del programa al que pertenece el proceso)
+'ps axjf' = Nos permite mostrar el arbol de procesos
+'ps aux | grep bash' = Nos permite filtrar por la palabra final los procesos
+'top'= top nos da un informe en tiempo real de los los procesos y no estaticos como ps, man top
+'jobs' = Al igual que el comando anterior, muestra los procesos. A diferencia de ps, es un comando interno de la terminal
+'fg'=  Abre un proceso que estaba pausado"|" Pipe: Envia el standard output de un comando al standard input de otro.
+"&" Ampersand: Envia un proceso al background
+'nohup nombre-del-proceso' = Genera un archivo llamado “nohup.out” que muestra toda la información que produjo un proceso y lo revisamos con less o cat.
+```
+#### [Learn more](https://openwebinars.net/blog/20-comandos-para-administrar-y-gestionar--facilmente-los-procesos-linux/)
+
+
 
 
 
