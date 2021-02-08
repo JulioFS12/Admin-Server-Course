@@ -178,11 +178,58 @@ contiene varios archivos con información del sistema, como archivos de logs, em
 
 #### [Mas comandos...](https://blog.desdelinux.net/mas-de-400-comandos-para-gnulinux-que-deberias-conocer/)
 
+### Interacción con archivos y permisos
 
+#### Permisos del propietario
 
+El propietario es aquel usuario que genera o crea un archivo/carpeta dentro de su directorio de trabajo (HOME), o en algún otro directorio sobre el que tenga derechos. Cada usuario tiene la potestad de crear, por defecto, los archivos que quiera dentro de su directorio de trabajo. En principio, él y solamente él será el que tenga acceso a la información contenida en los archivos y directorios que hay en su directorio HOME.
 
+#### Permisos del grupo
 
+Lo más normal es que cada usuario pertenezca a un grupo de trabajo. De esta forma, cuando se gestiona un grupo, se gestionan todos los usuarios que pertenecen a éste. Es decir, es más fácil integrar varios usuarios en un grupo al que se le conceden determinados privilegios en el sistema, que asignar los privilegios de forma independiente a cada usuario.
 
+#### Permisos del resto de usuarios
+
+Por último, también los privilegios de los archivos contenidos en cualquier directorio, pueden tenerlos otros usuarios que no pertenezcan al grupo de trabajo en el que está integrado el archivo en cuestión. Es decir, a los usuarios que no pertenecen al grupo de trabajo en el que está el archivo, pero que pertenecen a otros grupos de trabajo, se les denomina resto de usuarios del sistema.
+
+```
+Permisos estan compuestos por 10 caracteres
+- rw- rw- r-- 
+
+1er caracter corresponde al tipo de archivo
+'-' = archivo
+'b' =	Archivo de bloques especiales (Archivos especiales de dispositivo)
+'c' =	Archivo de caracteres especiales (Dispositivo tty, impresora…)
+'d' = directorio
+'l' = enlace simbólico
+'p' =	Archivo especial de cauce (pipe o tubería)
+
+Asignación de permisos en grupos de 3
+'u' = usuarios (corresponde caracter del 2 al 4)
+'g' = grupos (corresponde caracter del 5 al 7)
+'o' = otros (corresponde caracter del 8 al 10)
+'a' = todos
+
+Tipo de permisos
+'r' = lectura
+'w' = escritura
+'x' = ejecución
+'-' = sin permiso
+
+'+' añade permisos
+'-' quita permisos
+
+Formato octal
+'0' = (0+0+0) = Sin permisos = ---
+'1' = (0+0+1) = Ejecución = --X
+'2' = (0+2+0) = Escritura = -w-
+'4' = (4+0+0) = Lectura = r--
+'7' = (4+2+1= = Eje, Esc, Lec = rwx
+
+chmod | cambiar permisos (chmod u-r archivo.txt), forma rapida asignar permisos a todos 'chmod +x'
+chown | (Change Owner), cambia la propiedad d
+```
+### [Learn more...](https://blog.desdelinux.net/permisos-y-derechos-en-linux/)
 
 
 
