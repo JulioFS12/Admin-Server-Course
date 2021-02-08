@@ -1,6 +1,6 @@
 # Admin-Server-Course
 
-## INSTALAR LINUX CENTOS
+### INSTALAR LINUX CENTOS
 
 * Descargar Virtual Box: https://www.virtualbox.org/
 * Descargar CentOS: http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1908.iso
@@ -14,3 +14,14 @@
 * Configuramos la hora y damos click en done
 * Hacemos click en ROOT PASSWORD y creamos una contraseña para el usuario root
 * Creamos un usuario nuevo dando click en USER CREATION y finalizamos la instalación
+
+### INSTALAR LINUX UBUNTU
+
+* Descargar Virtual Box: https://www.virtualbox.org/
+* Descargar Ubuntu Server: https://ubuntu.com/download/server
+* Crear una nueva máquina virtual
+* En la configuración de nuestra máquina, en la sección Red cambiar de NAT a Adaptador puente. En avanzadas, colocar en el Modo promiscuo “Permitir todo”
+* En la sección Storage seleccionamos el cd que dice “Vacío”, y en el apartado de atributos a la derecha seleccionamos el icono del cd para buscar nuestra imagen ISO de Ubuntu ya * descargada anteriormente. Aceptamos los cambios.
+* Iniciamos la máquina virtual
+* Si estamos trabajando en un servidor físico, deberíamos seleccionar “Comprobar memoria”
+* Instalamos el sistema operativo
