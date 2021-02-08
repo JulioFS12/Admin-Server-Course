@@ -260,19 +260,80 @@ Para ver los procesos en sistemas Linux, contamos con el comando ‘ ps ’, que
 'fg'=  Abre un proceso que estaba pausado"|" Pipe: Envia el standard output de un comando al standard input de otro.
 "&" Ampersand: Envia un proceso al background
 'nohup nombre-del-proceso' = Genera un archivo llamado “nohup.out” que muestra toda la información que produjo un proceso y lo revisamos con less o cat.
+
+'free' = Me muestra información sobre la memoria de mi sistema. Con el modificador -h la información es más legible para un humano
+'du' = Muestra información sobre el disco duro. Con el modificador -hsc y un directorio especificado muestra el tamaño de ese directorio
+'htop' = Funciona como top pero funciona de forma más intuitiva
+
+cat /proc/cpuinfo | grep "processor": Muestra información sobre el CPU
+sudo ps auxf | sort -nr -k 3 | head -5: Muestra los 5 procesos que más uso hacen del CPU
+sudo ps auxf | sort -nr -k 4 | head -5: Muestra los 5 procesos que más uso hacen de la memoria RAM
 ```
 #### [Learn more](https://openwebinars.net/blog/20-comandos-para-administrar-y-gestionar--facilmente-los-procesos-linux/)
 
+### Análisis de los parámetros de red
 
+#### Ip privada
 
+Una dirección IP Privada se utiliza para identificar equipos o dispositivos dentro de una red doméstica o privada. Se reservan para ello determinados rangos de direcciones:
 
+* Clase A: 10.0.0.0 a 10.255.255.255
+* Clase B: 172.16.0.0 a 172.31.255.255
+* Clase C: 192.168.0.0 a 192.168.255.255
 
+En una red, las direcciones IP Privadas deberán ser únicas para cada dispositivo o al duplicarlas surgirán problemas. Volviendo al ejemplo del servicio de paquetería, sería como si dos vecinos tuvieran el mismo nombre y la misma dirección, haciendo imposible saber a quién de ellos se deberá realizar la entrega.
 
+Ahora bien, las direcciones IP Privadas sí pueden repetirse pero en redes distintas, en cuyo caso no habrá conflictos debido a que las redes se encuentran separadas. De la misma manera que es posible tener dos direcciones iguales pero en distintas ciudades.
 
+#### Ip publica
 
+En una red local habrá varias direcciones IP Privadas y generalmente una dirección IP Pública. Para conectar una red privada con Internet hará falta un “traductor” o NAT (Network Address Translation), que pasará los datos entre las direcciones IP Privadas y las direcciones IP Públicas.
 
+La dirección IP Pública es aquella que nos ofrece el proveedor de acceso a Internet y se asigna a cualquier equipo o dispositivo conectado de forma directa a Internet. Por ejemplo, los servidores que alojan sitios web, los routers o modems que dan el acceso a Internet.
 
+Las direcciones IP Públicas son siempre únicas, es decir, no se pueden repetir. Dos equipos con IP de ese tipo pueden conectarse directamente entre sí, por ejemplo, tu router con un servidor web o dos servidores web entre sí.
 
+```
+ifconfig ==> Interface Configuration / Se enlistan las tarjetas que tenemos y su direccionamiento especifico.
+
+ip a ==> ip address show / También muestra la información de la red. Algunos modificadores para este comando son -4 para listar solo las ipv4 ó -6 para listar las ipv6.
+
+hostname ==> Para visualizar el nombre del equipo, este hostname es como se identifica el equipo en las redes.
+
+route -n ==> Para visualizar la puerta de enlace predeterminada del equipo. Muestra la IP routing table.
+
+nslookup nombredominio ==> Para visualizar la ip de cualquier dominio especifico.
+
+curl ==> Puede realizar simulaciones como las que hace Postman.
+
+wget nombredominio ==> Para obtener información desde internet.
+```
+### Administración de paquetes acorde a la distribución
+
+Administración de paquetes es un sistema que instala, actualiza, consulta o quita el software dentro de un sistema de archivos. En Linux hay muchos sistemas de administración de paquetes de software diferentes, pero los dos más populares son Debian y Red Hat. En el nivel más bajo del sistema de administración de paquetes de Debian está el comando dpkg.
+
+```
+Red Hat / CentOS / Fedora
+  rpm: Red Hat Package Manager.
+    Base de datos RPM, localizada en var/lib/rpm
+    rpm -q para Listar todos los rpms instalados en la máquina. (query all)
+    rpm -i paquete.rpm Realizar la instalación de un paquete. (install)
+    rpm -e paquete.rpm Remover un paquete del sistema. (erase)
+  Repositorios yum Permite instalar un paquete desde un repositorio sin tener que conocer la ruta del archivo o las dependencias.
+yum install paquete
+
+Debian / Ubuntu
+  deb Debian package management.
+    Base de datos DPKG, localizada en /var/lib/dpkg
+    dpkg -l Listar todos los debs instalados en la máquina.
+    dpkg -i paquete.deb Realizar la instalación de un paquete.
+    dpkg -r paquete.deb Remover un paquete del sistema.
+    dpkg-reconfigure
+    dpkg-reconfigure paquete Volver a ejecutar el asistente de configuración si está disponible.
+  repositorios apt otra forma de instalar.
+    apt install paquete
+    apt uninstall paquete
+```
 
 
 
