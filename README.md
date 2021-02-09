@@ -367,6 +367,7 @@ Actualiza todos los paquetes instalados en el sistema a la última versión que 
 (Equivalente a apt-get dist-upgrade o aptitude full-upgrade).
 ```
 #### Desinstalación y eliminación de paquetes
+```
 apt remove <paquete>
 Desinstala un paquete, pero mantiene los archivos de instalación del paquete. Es posible desinstalar varios paquetes a la vez, usando la sintaxis: aptt remove <paquete> <paquete> <…>.
 (Equivalente a apt-get remove <paquete> o aptitude remove <paquete>).
@@ -399,11 +400,133 @@ apt-clean autoclean
 Elimina los archivos de paquetes de versiones pasadas existentes en cache, pero mantiene los paquetes de versiones actualizados
 (Equivalente a apt-get autoclean o aptitude autoclean).
 ```
-  
+
+### Festor de paquetes SNAP
+
+Los nuevos paquetes Snap incluyen todos los archivos necesarios para la correcta instalación y ejecución de una aplicación y todas las dependencias del mismo de manera que la instalación esté asegurada. Además, tanto la aplicación como las dependencias se instalan de manera aislada evitando conflictos entre ellas y que, si se modifica una dependencia, otra aplicación pueda dejar de funcionar.
+
+ ```
+ snap find = Y nos aparecerán todos los paquetes disponibles.
+ snap find name = búsquedas más concretas añadiendo al final una parte del nombre del paquete que buscamos.
+ sudo snap install nombre-paquete = Ahora ya podemos ejecutarla, desde el propio terminal, ejecutándola por el nombre de la aplicación.
+ sudo snap refresh nombre-paquete = Este comando buscará si existe una nueva versión del paquete Snap y, de haberla, la descargará e instalará automáticamente.
+ snap list =  ver una lista con todos los paquetes instalados.
+ sudo snap remove nombre-paquete =  para desinstalar los paquetes.
+
+ ```
+ [mas..](https://snapcraft.io/docs/getting-started#5)
+ 
+#### Del curo
+```
+sudo apt update
+sudo apt upgrade
+sudo apt dist-upgrade
+sudo apt search mysql
+sudo apt search "mysql-server$"
+sudo apt-cache search "mysql-server$"
+dpkg -l
+sudo dkpg-reconfigure tzdata
+date
+sudo snap search aws-cli
+sudo snap refresh --list
+sudo snap info aws-cli
+sudo snap install canonical-livepatch
+```
+
 #### Por seguridad, actualizar con frecuencia
 Es imprescindible que el servidor esté siempre al día con sus actualizaciones. La comunidad debian está actualizando constantemente el software para corregir bugs y fallos de seguridad. Un sistema no actualizado es una puerta abierta a los hackers y los crackers. La mejor fuente para buscar software actualizado es internet. Hay que escoger cuidadosamente las fuentes de software o repositórios y hacer actualizaciones frecuentemente.
 
 También es importante seguir de cerca todas las informaciones referentes a bugs (conflictos o problemas que producen algunos paquetes) y fallos de seguridad, así como estar atentos a cuál es la mejor forma de corregir esos fallos. La distribución edita listas con los anuncios de seguridad y con sus respectivas correcciones en la página de la distribución o si prefiere en las listas de distribución.
+
+### CentOs/Yum/Rpm
+```
+rpm -qa = Enlista los paquetes instalados en el SO.
+
+rpm -qi nombre_paquete = Mostrar la información sobre un paquete especifico.
+
+Con Bash podemos hacer scripting en SO Linux.
+
+rpm -qc nombre_paquete = Muestra todos los archivos involucrados sobre el paquete.
+
+También podemos usar yum. Pero lo primero es dar yum update. Pero para poder ejecutarlo necesitamos un usuario con todos los permisos, por ejemplo el usuario root.
+Si se muestra un # al final del nombre del usuario, eso indica que estamos trabajando con un usuario root. Por ejemplo:
+[root@server ~]#
+
+Lo ideal es nunca trabajar con un usuario root. Lo ideal es crear usuarios que tengan ciertos permisos específicos, por medidas de seguridad y evitar errores.
+
+yum install net-tools = Para habilitar el ifconfig.
+
+rpm -e nombre_paquete = Para eliminar un paquete del SO.
+```
+### Nagios: Desempaquetado, descompresión, compilación e instalación de paquetes
+
+No todo el software que necesitamos se encuentra en los repositorios. Debido a esto, algunas veces debemos descargar el software, realizar un proceso de descompresión y desempaquetado para finalmente instalar la herramienta.
+
+Instalación de algunas herramientas para manejar una base de datos MySQL (recuerda que instalaremos y trabaremos con MySQL en una próxima clase):
+
+```
+sudo apt install build-essential libgd-dev openssl libssl-dev unzip apache2 php gcc libdbi-perl libdbd-mysql-perl
+```
+Instalación de Nagios:
+```
+wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.4.tar.gz -O nagioscore.tar.gz 
+```
+#### Descomprimir y desempaquetar archivos con tar:
+```
+tar xvzf nagioscore.tar.gz
+```
+Este comando creará una carpeta nagios-4.4.4. El nombre de la carpeta puede variar dependiendo de la versión que descargaste. Entrando a esta carpeta podemos ejecutar diferentes archivos y comandos para configurar el software y realizar la instalación.
+
+# 1:
+```
+sudo ./configure --with-https-conf=/etc/apache2/sites-enabled
+```
+# 2:
+```
+sudo make all
+```
+# 3:
+```
+sudo make install
+```
+# 4:
+```
+sudo make install-init
+```
+# 5:
+```
+sudo make install-commandmode
+```
+# 6:
+```
+sudo make install-config
+```
+#7:
+```
+sudo make install-webconf
+```
+Por último, para administrar el servicio de nagios podemos usar el comando sudo systemctl (status, start, restart, reload, stop, enable, disable, list-dependencies) nagios.
+
+### Los usuarios, una tarea vital en el proceso de administración del sistema operativo
+
+* El comando id nos muestra el identificador único (uid) de cada usuario en nuestro sistema operativo. El ID 0 está reservado para el usuario root.
+
+* Con el comando whoami podemos ver con qué usuario estamos trabajando en este momento. Podemos ver todos los usuarios del sistema leyendo el archivo /etc/passwd.
+
+* Las contraseñas de los usuarios están almacenadas en el archivo etc/shadow, pero están cifradas. Y solo el usuario root tiene permisos de lectura/escritura.
+
+* Para cambiar la contraseña de nuestros usuarios usamos el comando passwd.
+
+[imagen](https://static.platzi.com/media/user_upload/Untitled-2bd3cf0c-a997-49eb-a38e-a77caaffb1c3.jpg)
+
+
+
+
+
+
+
+
+
 
 
 
