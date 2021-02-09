@@ -336,6 +336,74 @@ Debian / Ubuntu
 ```
 
 
+### Debian/Ubuntu
+
+Uno de los puntos fuertes de la distribución Debian es su gestor de paquetes apt y su interfaz aptitude. La gestión de las actualizaciones y las instalaciones de software se hace mediante este potente e intuitivo gestor de paquetes. Con apt y aptitude se puede, por ejemplo, actualizar todo un sistema con apenas un par de comandos.
+
+#### Actualización de la lista de paquetes
+```
+apt update
+Actualiza en el equipo la lista de paquetes que hay en los repositorios configurados en el archivo /etc/apt/sources.list. Este comando hay que ejecutarlo antes de instalar, desinstalar o gestionar paquetes
+(Equivalente a apt-get update o aptitude update).
+```
+
+#### Instalación de paquetes
+```
+apt install <paquete>
+Instala un paquete de software y todos los paquetes de los que depende el paquete instalado. Se pueden instalar varios paquetes a la vez, usando esta sintaxis: apt-get install <paquete1> <paquete2> <paquete3>.
+(Equivalente a apt-get install <paquete> o aptitude install <paquete>).
+apt install –reinstall <paquete>
+Re-instala un paquete, sustituyendo los archivos. Bastante útil, cuando se quiere reponer archivos que han sido cambiados
+(Equivalente a apt-get reinstall <paquete> o aptitude reinstall <paquete>).
+```
+
+#### Actualización del sistema
+```
+apt upgrade
+Actualiza todos los paquetes instalados en el sistema a la última versión que haya en el momento de ejecutar el comando. Si alguna actualización necesita la instalación de un nuevo paquete, esa actualización no se realiza. Actualiza sólo los paquetes que no requieran nuevas instalaciones.
+(Equivalente a apt-get upgrade o aptitude safe-upgrade).
+apt full-upgrade
+Actualiza todos los paquetes instalados en el sistema a la última versión que haya en el momento de ejecutar el comando. Si alguna actualización necesita la instalación de un nuevo paquete, el nuevo paquete se instala y se completa la actualización. Actualiza todos los paquetes, y si hay que instalar nuevos paquetes para la actualización se instalan.
+(Equivalente a apt-get dist-upgrade o aptitude full-upgrade).
+```
+#### Desinstalación y eliminación de paquetes
+apt remove <paquete>
+Desinstala un paquete, pero mantiene los archivos de instalación del paquete. Es posible desinstalar varios paquetes a la vez, usando la sintaxis: aptt remove <paquete> <paquete> <…>.
+(Equivalente a apt-get remove <paquete> o aptitude remove <paquete>).
+apt purge <paquete>
+Elimina por completo un paquete, incluyendo los ficheros de configuración
+(Equivalente a apt-get purge <paquete> oaptitude purge <paquete>).
+apt autoremove
+Elimina los paquetes auto-instalados que ya no sean necesarios.
+(Equivalente a apt-get autoremove, sin equivalente en aptitude).
+apt autoremove –purge
+Elimina los paquetes auto-instalados que ya no sean necesarios, incluyendo los ficheros de configuración.
+(Equivalente a apt-get autoremove –purge, sin equivalente en aptitude).
+```
+#### Búsqueda de paquetes
+```
+apt search <criterio>
+Busca en la lista de paquetes y muestra las coincidencias de criterio
+(Equivalente a apt-cache search <criterio> o aptitude search <criterio>)
+Informaciones sobre paquetes
+apt show <paquete>
+Muestra información y características del paquete consultado
+(Equivalente a apt-cache show <paquete> o aptitude show <paquete>)
+```
+#### Limpiar la cache de paquetes
+```
+apt-get clean
+Elimina todos los archivos de paquetes existentes en cache
+(es equivalente a aptitude clean).
+apt-clean autoclean
+Elimina los archivos de paquetes de versiones pasadas existentes en cache, pero mantiene los paquetes de versiones actualizados
+(Equivalente a apt-get autoclean o aptitude autoclean).
+```
+  
+#### Por seguridad, actualizar con frecuencia
+Es imprescindible que el servidor esté siempre al día con sus actualizaciones. La comunidad debian está actualizando constantemente el software para corregir bugs y fallos de seguridad. Un sistema no actualizado es una puerta abierta a los hackers y los crackers. La mejor fuente para buscar software actualizado es internet. Hay que escoger cuidadosamente las fuentes de software o repositórios y hacer actualizaciones frecuentemente.
+
+También es importante seguir de cerca todas las informaciones referentes a bugs (conflictos o problemas que producen algunos paquetes) y fallos de seguridad, así como estar atentos a cuál es la mejor forma de corregir esos fallos. La distribución edita listas con los anuncios de seguridad y con sus respectivas correcciones en la página de la distribución o si prefiere en las listas de distribución.
 
 
 
