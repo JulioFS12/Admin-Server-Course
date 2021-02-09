@@ -509,15 +509,36 @@ Por último, para administrar el servicio de nagios podemos usar el comando sudo
 
 ### Los usuarios, una tarea vital en el proceso de administración del sistema operativo
 
-* El comando id nos muestra el identificador único (uid) de cada usuario en nuestro sistema operativo. El ID 0 está reservado para el usuario root.
+* El comando ```id``` nos muestra el identificador único (uid) de cada usuario en nuestro sistema operativo. El ID 0 está reservado para el usuario root.
 
-* Con el comando whoami podemos ver con qué usuario estamos trabajando en este momento. Podemos ver todos los usuarios del sistema leyendo el archivo /etc/passwd.
+* Con el comando ```whoami``` podemos ver con qué usuario estamos trabajando en este momento. Podemos ver todos los usuarios del sistema leyendo el archivo /etc/passwd.
 
-* Las contraseñas de los usuarios están almacenadas en el archivo etc/shadow, pero están cifradas. Y solo el usuario root tiene permisos de lectura/escritura.
+* Las contraseñas de los usuarios están almacenadas en el archivo ```/etc/shadow```, pero están cifradas. Y solo el usuario root tiene permisos de lectura/escritura.
 
-* Para cambiar la contraseña de nuestros usuarios usamos el comando passwd.
+* Para cambiar la contraseña de nuestros usuarios usamos el comando ```passwd nombre_usuario``` .
 
-[imagen](https://static.platzi.com/media/user_upload/Untitled-2bd3cf0c-a997-49eb-a38e-a77caaffb1c3.jpg)
+![imagen](https://static.platzi.com/media/user_upload/Untitled-2bd3cf0c-a997-49eb-a38e-a77caaffb1c3.jpg)
+
+#### Comandos para administrar cuentas de usuarios:
+
+* sudo useradd nombre-usuario: crea un usuario sin asignarle inmediatamente alguna contraseña ni consultar más información. Debemos terminar de configurar esta cuenta a mano posteriormente.
+* sudo adduser nombre-usuario: crea un nuevo usuario con contraseña y algo más de información. También creará una nueva carpeta en la carpeta /home/.
+* userdel nombre-usuario: eliminar cuentas de usuarios.
+* usermod: modificar la información de alguna cuenta.
+* Nunca modifiques a mano el archivo /etc/passwd con un editor de texto. Para administrar los usuarios debemos usar los comandos que estudiamos en clase.
+
+#### Membresía de los grupos
+* Los grupos nos ayudan a darle los mismos permisos a diferentes usuarios al mismo tiempo, sin necesidad de asignar el mismo permiso a cada usuario individualmente. Todos los usuarios que pertenezcan al mismo grupo tendrán los mismos permisos.
+
+* Para cambiar de usuario sin necesidad de reiniciar el sistema podemos usar el comando ```su - nombre-usuario```. También podemos cambiar de usuario sin necesidad de saber su contraseña usando el comando ```sudo su - nombre-usuario```.
+
+* Para ver a qué grupos pertenecen nuestros usuarios usamos el comando ```groups nombre-usuario```. Para agregar usuarios a un nuevo grupo usamos el comando ```sudo gpasswd -a nombre-usuario nombre-grupo``` . Los eliminamos de la misma forma con ```gpasswd -d nombre-usuario grupo(sudo)```.
+
+* Para esto también podemos usar el comando del grupo super usuario donde se encuentra ```sudo usermod -aG nombre-grupo nombre-usuario```. Recuerda que en este caso el orden en que escribimos el grupo y el ususario se invierte.
+
+* Para listar los permisos de nuestros usuarios ejecutamos el comando sudo -l.
+
+
 
 
 
