@@ -539,10 +539,45 @@ Por último, para administrar el servicio de nagios podemos usar el comando sudo
 * Para listar los permisos de nuestros usuarios ejecutamos el comando sudo -l.
 
 
+### Usando PAM para el control de acceso de usuarios
 
+Linux-PAM (abreviatura de módulos de autenticación conectables que evolucionaron de la arquitectura Unix-PAM) es un potente conjunto de bibliotecas compartidas que se utiliza para autenticar dinámicamente a un usuario en aplicaciones (o servicios ) en un sistema Linux.
 
+Integra múltiples módulos de autenticación de bajo nivel en una API de alto nivel que proporciona soporte de autenticación dinámica para aplicaciones. Esto permite a los desarrolladores escribir aplicaciones que requieren autenticación, independientemente del sistema de autenticación subyacente.
 
+PAM es un mecanismo para administrar a los usuarios de nuestro sistema operativo. Nos permite autenticar usuarios, controlar la cantidad de procesos que ejecutan cada uno, verificar la fortaleza de sus contraseñas, ver la hora a la que se conectan por SSH, entre otras.
 
+```
+'ls /etc/pam.d' = configuraciones respectivas que se pueden hacer sobre PAN
+'ls /lib64/security' = Libreria de acceso de PAM
+'ls /etc/security' = Realizar configuraciones para PAM
+'pwscore' = Evaluar que tan buena es una contrasena
+'ulimit -u 10  --numero de procesos' = Listamos los permisos del usuario lle agregamos -u para cambiar el  liminte mas el numero de 10 procesos
+'vi /etc/security/time.conf' = configurar el tiempo determinado en que los usuarios de se deben logear.
+'sudo vi /etc/security/time.conf ' = cambiar el permiso del archivo
+'gpasswd -a usuario wheel' = agg usuario a un grupo.
+'groups usuario' = ver grupos
+```
+
+### Autenticación de clientes y servidores sobre SSH
+
+SSH o Secure Shell, es un protocolo de administración remota que le permite a los usuarios controlar y modificar sus servidores remotos a través de Internet a través de un mecanismo de autenticación.
+
+Proporciona un mecanismo para autenticar un usuario remoto, transferir entradas desde el cliente al host y retransmitir la salida de vuelta al cliente. El servicio se creó como un reemplazo seguro para el Telnet sin cifrar y utiliza técnicas criptográficas para garantizar que todas las comunicaciones hacia y desde el servidor remoto sucedan de manera encriptada.
+
+#### Funcionamiento
+
+* SSH es un protocolo que nos ayuda a conectarnos a nuestros servidores desde nuestras máquinas para administrarlos de forma remota. No es muy recomendado usar otros protocolos como Telnet, ya que son inseguros y están deprecados.
+
+*Con el comando ```ssh-keygen``` podemos generar llaves públicas y privadas en nuestros sistemas, de esta forma podremos conectarnos a servidores remotos o, si es el caso, permitir que otras personas se conecten a nuestra máquina.
+
+* Para conectarnos desde nuestra máquina a un servidor remoto debemos:
+
+1. Ejecutar el comando ``ssh-copy-id -i ubicación-llave-pública nombre-usuario@dirección-IP-servidor-remoto`` y escribir nuestra contraseña para enviar nuestra llave pública al servidor.
+2, Usar el comando ssh nombre-usuario@dirección-IP-servidor-remoto para conectarnos al servidor sin necesidad de escribir contraseñas.
+3. También podemos usar el comando ssh -v ... para ver la información o los errores de nuestra conexión con el servidor. Puedes usar la letra v hasta 4 veces (-vvvv) para leer más información.
+
+* Las configuraciones de SSH se encuentran en el archivo ``/etc/ssh/sshd_config ```
 
 
 
